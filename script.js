@@ -5,9 +5,18 @@ Promise.all([
   faceapi.nets.faceLandmark68Net.loadFromUri('/models'),
   faceapi.nets.faceRecognitionNet.loadFromUri('/models'),
   faceapi.nets.faceExpressionNet.loadFromUri('/models')
-]).then(startVideo)
+]).then(DetectFace)
+
+
+function DetectFace() {
+  const btn = document.getElementById("detectButton")
+  const para = document.getElementById("para")
+  para.textContent = "Ready To Detect"
+  btn.addEventListener("click", startVideo)
+}
 
 function startVideo() {
+  // navigator.mediaDevices.getUserMedia
   navigator.getUserMedia(
     { video: {} },
     stream => video.srcObject = stream,
